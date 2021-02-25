@@ -11,6 +11,5 @@ namespace Zoo
         {
 
         }
-        public string Name { get; set; }
     }
 }

@@ -11,8 +11,5 @@ namespace PlayersAndMonsters
         {
                 
         }
-
-        public string Username { get; set; }
-        public int Level { get; set; }
     }
 }
