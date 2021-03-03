@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interfaces and Abstraction Exercise", "Interfaces and Abstraction Exercise\Interfaces and Abstraction Exercise.csproj", "{24995ECB-E728-4EAC-9949-898D0489F4E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Interfaces and Abstraction Exercise", "Interfaces and Abstraction Exercise\Interfaces and Abstraction Exercise.csproj", "{24995ECB-E728-4EAC-9949-898D0489F4E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonInfo", "PersonInfo\PersonInfo.csproj", "{1C749F06-EF72-4A46-B10E-3F3357E45CB0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonInfo", "PersonInfo\PersonInfo.csproj", "{1C749F06-EF72-4A46-B10E-3F3357E45CB0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Telephony", "Telephony\Telephony.csproj", "{6B92EFB7-AA54-4007-85EE-373BA545BE34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Telephony", "Telephony\Telephony.csproj", "{6B92EFB7-AA54-4007-85EE-373BA545BE34}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BorderControl", "BorderControl\BorderControl.csproj", "{078BE6AD-69E0-478B-8B65-0C1BA90B759A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{6B92EFB7-AA54-4007-85EE-373BA545BE34}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B92EFB7-AA54-4007-85EE-373BA545BE34}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B92EFB7-AA54-4007-85EE-373BA545BE34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{078BE6AD-69E0-478B-8B65-0C1BA90B759A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{078BE6AD-69E0-478B-8B65-0C1BA90B759A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{078BE6AD-69E0-478B-8B65-0C1BA90B759A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{078BE6AD-69E0-478B-8B65-0C1BA90B759A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
