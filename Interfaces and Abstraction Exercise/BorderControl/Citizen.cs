@@ -13,8 +13,8 @@ namespace BorderControl
             this.Id = id;
         }
 
-        public string Name { get; set; }
-        public int Age { get; set; }
-        public string Id { get; set; }
+        public string Name { get;}
+        public int Age { get;}
+        public string Id { get;}
     }
 }

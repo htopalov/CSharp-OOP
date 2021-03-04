@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BorderControl
+namespace BirthdayCelebrations
 {
     public class Robot : IIdentity
     {
@@ -11,7 +11,7 @@ namespace BorderControl
             this.Model = model;
             this.Id = id;
         }
-        public string Model { get;}
-        public string Id { get;}
+        public string Model { get; set; }
+        public string Id { get; set; }
     }
 }
