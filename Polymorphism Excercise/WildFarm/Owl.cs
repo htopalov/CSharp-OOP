@@ -5,8 +5,8 @@ namespace WildFarm
     public class Owl : Bird
     {
         private const double foodCoefficient = 0.25;
-        public Owl(string name, double weight, int foodEaten, double wingSize) 
-            : base(name, weight, foodEaten, wingSize)
+        public Owl(string name, double weight, double wingSize) 
+            : base(name, weight, wingSize)
         {
         }
 
@@ -15,10 +15,10 @@ namespace WildFarm
             if (food.GetType().Name == "Meat")
             {
                 this.Weight += food.Quantity * foodCoefficient;
+                this.FoodEaten += food.Quantity;
             }
             else
             {
-                base.FoodEaten = 0;
                 throw new ArgumentException($"{this.GetType().Name} does not eat {food.GetType().Name}!");
             }
         }

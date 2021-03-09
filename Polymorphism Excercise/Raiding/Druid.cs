@@ -4,15 +4,14 @@
     {
         private const int power = 80;
         public Druid(string name)
-            : base(name)
+            : base(name, power)
         {
         }
 
-        public override int Power => power;
 
         public override string CastAbility()
         {
-            return $"{this.GetType().Name} - { Name} healed for {power}";
+            return $"{this.GetType().Name} - { Name} healed for {Power}";
         }
     }
 }

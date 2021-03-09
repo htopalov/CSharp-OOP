@@ -5,8 +5,8 @@ namespace WildFarm
     public class Dog : Mammal
     {
         private const double foodCoefficient = 0.40;
-        public Dog(string name, double weight, int foodEaten, string livingRegion)
-            : base(name, weight, foodEaten, livingRegion)
+        public Dog(string name, double weight, string livingRegion)
+            : base(name, weight, livingRegion)
         {
         }
 
@@ -15,10 +15,10 @@ namespace WildFarm
             if (food.GetType().Name == "Meat")
             {
                 this.Weight += food.Quantity * foodCoefficient;
+                this.FoodEaten += food.Quantity;
             }
             else
             {
-                base.FoodEaten = 0;
                 throw new ArgumentException($"{this.GetType().Name} does not eat {food.GetType().Name}!");
             }
         }

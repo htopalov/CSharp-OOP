@@ -2,12 +2,13 @@
 {
     public abstract class BaseHero
     {
-        public BaseHero(string name)
+        public BaseHero(string name,int power)
         {
             this.Name = name;
+            this.Power = power;
         }
         public string Name { get; private set; }
-        public abstract int Power { get; }
+        public int Power { get; private set; }
         public abstract string CastAbility();
     }
 }

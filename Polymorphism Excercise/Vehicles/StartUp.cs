@@ -6,42 +6,85 @@ namespace Vehicles
     {
         static void Main(string[] args)
         {
-            string[] inputCar = Console.ReadLine().Split(" ", StringSplitOptions.RemoveEmptyEntries);
-            IVehicle car = car = new Car(double.Parse(inputCar[1]), double.Parse(inputCar[2]));
-            string[] inputTruck = Console.ReadLine().Split(" ", StringSplitOptions.RemoveEmptyEntries);
-            IVehicle truck = new Truck(double.Parse(inputTruck[1]), double.Parse(inputTruck[2]));
-            int commandsCount = int.Parse(Console.ReadLine());
-            for (int i = 0; i < commandsCount; i++)
+
+            string[] carData = Console.ReadLine().Split(" ", StringSplitOptions.RemoveEmptyEntries);
+            Vehicle car = new Car(double.Parse(carData[1]), double.Parse(carData[2]), double.Parse(carData[3]));
+            string[] truckData = Console.ReadLine().Split(" ", StringSplitOptions.RemoveEmptyEntries);
+            Vehicle truck = new Truck(double.Parse(truckData[1]), double.Parse(truckData[2]), double.Parse(truckData[3]));
+            string[] busData = Console.ReadLine().Split(" ", StringSplitOptions.RemoveEmptyEntries);
+            Vehicle bus = new Bus(double.Parse(busData[1]), double.Parse(busData[2]), double.Parse(busData[3]));
+            int n = int.Parse(Console.ReadLine());
+            for (int i = 0; i < n; i++)
             {
                 string[] input = Console.ReadLine().Split(" ", StringSplitOptions.RemoveEmptyEntries);
-                string typeOfCommand = input[0].ToLower();
-                string typeOfVehicle = input[1];
+                string command = input[0];
+                string vehicleType = input[1];
                 double amount = double.Parse(input[2]);
-                if (typeOfCommand == "drive")
+                if (command == "Drive")
                 {
-                    if (typeOfVehicle == nameof(Car))
+                    try
                     {
-                        Console.WriteLine(car.Drive(amount));
+                        if (vehicleType == nameof(Car))
+                        {
+                            car.Drive(amount);
+                            Console.WriteLine($"Car travelled {amount} km");
+                        }
+                        else if (vehicleType == nameof(Truck))
+                        {
+                            truck.Drive(amount);
+                            Console.WriteLine($"Truck travelled {amount} km");
+                        }
+                        else
+                        {
+
+                            bus.Drive(amount);
+                            Console.WriteLine($"Bus travelled {amount} km");
+                        }
                     }
-                    else
+                    catch(ArgumentException ex)
                     {
-                        Console.WriteLine(truck.Drive(amount));
+                        Console.WriteLine(ex.Message);
                     }
                 }
-                else if (typeOfCommand == "refuel")
+                else if (command == "Refuel")
                 {
-                    if (typeOfVehicle == nameof(Car))
+                    try
                     {
-                        car.Refuel(amount);
+                        if (vehicleType == nameof(Car))
+                        {
+                            car.Refuel(amount);
+                        }
+                        else if (vehicleType == nameof(Truck))
+                        {
+                            truck.Refuel(amount);
+                        }
+                        else
+                        {
+                            bus.Refuel(amount);
+                        }
                     }
-                    else
+                    catch(ArgumentException ex)
                     {
-                        truck.Refuel(amount);
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+                else if (command == "DriveEmpty")
+                {
+                    try
+                    {
+                        ((Bus)bus).TurnOnConditioner();
+                        bus.Drive(amount);
+                        Console.WriteLine($"Bus travelled {amount} km");
+                    }
+                    catch(ArgumentException ex)
+                    {
+                        Console.WriteLine(ex.Message);
                     }
                 }
             }
-            Console.WriteLine($"Car: {car.FuelQuantity:f2}");
-            Console.WriteLine($"Truck: {truck.FuelQuantity:f2}");
+            Console.WriteLine(car);
+            Console.WriteLine(truck);
+            Console.WriteLine(bus);
         }
     }
 }

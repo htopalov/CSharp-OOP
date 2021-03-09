@@ -4,15 +4,13 @@
     {
         private const int power = 100;
         public Paladin(string name)
-            :base(name)
+            :base(name,power)
         {
         }
 
-        public override int Power => power;
-
         public override string CastAbility()
         {
-            return $"{this.GetType().Name} - {Name} healed for {power}";
+            return $"{this.GetType().Name} - {Name} healed for {Power}";
         }
     }
 }

@@ -36,32 +36,32 @@ namespace WildFarm
                     switch (animalArguments[0])
                     {
                         case "Cat":
-                            animal = new Cat(animalArguments[1], double.Parse(animalArguments[2]), food.Quantity, animalArguments[3], animalArguments[4]);
+                            animal = new Cat(animalArguments[1], double.Parse(animalArguments[2]), animalArguments[3], animalArguments[4]);
                             Console.WriteLine(animal.ProduceSound());
                             animal.Eat(food);
                             break;
                         case "Tiger":
-                            animal = new Tiger(animalArguments[1], double.Parse(animalArguments[2]), food.Quantity, animalArguments[3], animalArguments[4]);
+                            animal = new Tiger(animalArguments[1], double.Parse(animalArguments[2]), animalArguments[3], animalArguments[4]);
                             Console.WriteLine(animal.ProduceSound());
                             animal.Eat(food);
                             break;
                         case "Owl":
-                            animal = new Owl(animalArguments[1], double.Parse(animalArguments[2]), food.Quantity, double.Parse(animalArguments[3]));
+                            animal = new Owl(animalArguments[1], double.Parse(animalArguments[2]), double.Parse(animalArguments[3]));
                             Console.WriteLine(animal.ProduceSound());
                             animal.Eat(food);
                             break;
                         case "Hen":
-                            animal = new Hen(animalArguments[1], double.Parse(animalArguments[2]), food.Quantity, double.Parse(animalArguments[3]));
+                            animal = new Hen(animalArguments[1], double.Parse(animalArguments[2]), double.Parse(animalArguments[3]));
                             Console.WriteLine(animal.ProduceSound());
                             animal.Eat(food);
                             break;
                         case "Dog":
-                            animal = new Dog(animalArguments[1], double.Parse(animalArguments[2]), food.Quantity, animalArguments[3]);
+                            animal = new Dog(animalArguments[1], double.Parse(animalArguments[2]), animalArguments[3]);
                             Console.WriteLine(animal.ProduceSound());
                             animal.Eat(food);
                             break;
                         case "Mouse":
-                            animal = new Mouse(animalArguments[1], double.Parse(animalArguments[2]), food.Quantity, animalArguments[3]);
+                            animal = new Mouse(animalArguments[1], double.Parse(animalArguments[2]), animalArguments[3]);
                             Console.WriteLine(animal.ProduceSound());
                             animal.Eat(food);
                             break;

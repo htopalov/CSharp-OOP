@@ -1,56 +1,16 @@
-﻿namespace Vehicles
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Vehicles
 {
-    public class Car : IVehicle
+    public class Car : Vehicle
     {
-        private double fuelQuantity;
-        private double fuelConsumption;
-        private const double additionalFuel = 0.9;
-
-
-        public Car(double fuelQuantity, double fuelConsumption)
+        private const double airConditioner = 0.9;
+        public Car(double fuelQuantity, double fuelConsumption, double tankCapacity) 
+            : base(fuelQuantity, fuelConsumption,tankCapacity, airConditioner)
         {
-            this.FuelQuantity = fuelQuantity;
-            this.FuelConsumption = fuelConsumption;
-        }
-        public double FuelQuantity
-        {
-            get => this.fuelQuantity;
-            
-            private set
-            {
-                this.fuelQuantity = value;
-            }
-        }
 
-
-        public double FuelConsumption
-        {
-            get => this.fuelConsumption;
-
-            private set
-            {
-                this.fuelConsumption = value;
-            }
-        }
-
-        public string Drive(double kilometers)
-        {
-            double consumption = kilometers * (FuelConsumption + additionalFuel);
-            if (consumption > FuelQuantity)
-            {
-                return "Car needs refueling";
-            }
-            else if (FuelQuantity >= consumption)
-            {
-                this.FuelQuantity -= consumption;    
-            }
-            return $"Car travelled {kilometers} km";
-
-        }
-
-        public void Refuel(double fuel)
-        {
-            this.FuelQuantity += fuel;
         }
     }
 }

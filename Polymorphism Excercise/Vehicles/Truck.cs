@@ -1,50 +1,27 @@
-﻿namespace Vehicles
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Vehicles
 {
-    public class Truck : IVehicle
+    public class Truck : Vehicle
     {
-        private double fuelQuantity;
-        private double fuelConsumption;
-        private const double additionalFuel = 1.6;
-        public Truck(double fuelQuantity, double fuelConsumption)
+        private const double airConditioner = 1.6;
+        public Truck(double fuelQuantity, double fuelConsumption,double tankCapacity)
+            : base(fuelQuantity, fuelConsumption, tankCapacity, airConditioner)
         {
-            this.FuelQuantity = fuelQuantity;
-            this.FuelConsumption = fuelConsumption;
         }
-        public double FuelQuantity
+        public override void Refuel(double fuel)
         {
-            get => this.fuelQuantity;
-            private set
+            if (fuel <= 0)
             {
-                this.fuelQuantity = value;
+                throw new ArgumentException("Fuel must be a positive number");
             }
-        }
-
-        public double FuelConsumption
-        {
-            get => this.fuelConsumption;
-            private set
+            else if (fuel + FuelQuantity > TankCapacity)
             {
-                this.fuelConsumption = value;
+                throw new ArgumentException($"Cannot fit {fuel} fuel in the tank");
             }
-        }
-
-        public string Drive(double kilometers)
-        {
-            double consumption = kilometers * (FuelConsumption + additionalFuel);
-            if (consumption > FuelQuantity)
-            {
-                return "Truck needs refueling";
-            }
-            else if (FuelQuantity >= consumption)
-            {
-                this.FuelQuantity -= consumption;
-            }
-            return $"Truck travelled {kilometers} km";
-        }
-
-        public void Refuel(double fuel)
-        {
-            this.FuelQuantity += fuel * 0.95;
+            FuelQuantity += fuel*0.95;
         }
     }
 }

@@ -8,16 +8,14 @@ namespace Raiding
     {
         private const int power = 100;
         public Warrior(string name)
-            :base(name)
+            :base(name,power)
         {
 
         }
 
-        public override int Power => power;
-
         public override string CastAbility()
         {
-           return $"{this.GetType().Name} - {Name} hit for {power} damage";
+           return $"{this.GetType().Name} - {Name} hit for {Power} damage";
         }
     }
 }
