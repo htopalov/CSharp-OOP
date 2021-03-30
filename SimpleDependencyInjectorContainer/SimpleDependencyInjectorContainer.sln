@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleDependencyInjectorContainer", "SimpleDependencyInjectorContainer\SimpleDependencyInjectorContainer.csproj", "{B367FF22-FE2B-402B-A9F0-2FEC17070878}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleApp", "SimpleApp\SimpleApp.csproj", "{9AAF3D34-B23E-4418-B288-BAA5DF893D45}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B367FF22-FE2B-402B-A9F0-2FEC17070878}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B367FF22-FE2B-402B-A9F0-2FEC17070878}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B367FF22-FE2B-402B-A9F0-2FEC17070878}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B367FF22-FE2B-402B-A9F0-2FEC17070878}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9AAF3D34-B23E-4418-B288-BAA5DF893D45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AAF3D34-B23E-4418-B288-BAA5DF893D45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AAF3D34-B23E-4418-B288-BAA5DF893D45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AAF3D34-B23E-4418-B288-BAA5DF893D45}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8586B952-542B-4D39-A1C1-EB633F9AD73C}
+	EndGlobalSection
+EndGlobal
