@@ -3,13 +3,14 @@ using EasterRaces.IO;
 using EasterRaces.IO.Contracts;
 using EasterRaces.Core.Entities;
 
+
 namespace EasterRaces
 {
     public class StartUp
     {
         public static void Main()
         {
-            IChampionshipController controller = null; //new ChampionshipController();
+            IChampionshipController controller = new ChampionshipController();
             IReader reader = new ConsoleReader();
             IWriter writer = new ConsoleWriter();
 
