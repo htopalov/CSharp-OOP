@@ -28,59 +28,54 @@ namespace Bakery.Core
         }
         public string AddDrink(string type, string name, int portion, string brand)
         {
-            Drink drink = null;
             switch (type)
             {
                 case "Water":
-                    drink = new Water(name, portion, brand);
+                    drinks.Add(new Water(name, portion, brand));
                     break;
                 case "Tea":
-                    drink = new Tea(name, portion, brand);
+                    drinks.Add(new Tea(name,portion,brand));
                     break;
-            }
-            drinks.Add(drink);
+            }  
 
-            return string.Format(OutputMessages.DrinkAdded, drink.Name, drink.Brand);
+            return string.Format(OutputMessages.DrinkAdded, name, brand);
         }
 
         public string AddFood(string type, string name, decimal price)
         {
-            BakedFood food = null;
             switch (type)
             {
                 case "Bread":
-                    food = new Bread(name, price);
+                    bakedFoods.Add(new Bread(name,price));
                     break;
                 case "Cake":
-                    food = new Cake(name, price);
+                    bakedFoods.Add(new Cake(name, price));
                     break;
             }
-            bakedFoods.Add(food);
+            
 
-            return string.Format(OutputMessages.FoodAdded, food.Name, food.GetType().Name);
+            return string.Format(OutputMessages.FoodAdded, name, type);
         }
 
         public string AddTable(string type, int tableNumber, int capacity)
         {
-            Table table = null;
             switch (type)
             {
                 case "InsideTable":
-                    table = new InsideTable(tableNumber, capacity);
+                    tables.Add(new InsideTable(tableNumber,capacity));
                     break;
                 case "OutsideTable":
-                    table = new OutsideTable(tableNumber, capacity);
+                    tables.Add(new OutsideTable(tableNumber, capacity));
                     break;
             }
-            tables.Add(table);
 
-            return string.Format(OutputMessages.TableAdded, table.TableNumber);
+            return string.Format(OutputMessages.TableAdded, tableNumber);
         }
 
         public string GetFreeTablesInfo()
         {
             StringBuilder sb = new StringBuilder();
-            var freeTables = tables.Where(x => x.IsReserved == false);
+            var freeTables = tables.Where(x => x.IsReserved == false).ToList();
             foreach (var table in freeTables)
             {
                sb.AppendLine(table.GetFreeTableInfo());

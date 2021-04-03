@@ -12,15 +12,15 @@ namespace Bakery.Models.Tables
 {
     public abstract class Table : ITable
     {
-        private List<IBakedFood> FoodOrders;
-        private List<IDrink> DrinkOrders;
+        private List<IBakedFood> foodOrders;
+        private List<IDrink> drinkOrders;
         private int capacity;
         private int numberOfPeople;
 
         public Table(int tableNumber, int capacity, decimal pricePerPerson)
         {
-            this.FoodOrders = new List<IBakedFood>();
-            this.DrinkOrders = new List<IDrink>();
+            this.foodOrders = new List<IBakedFood>();
+            this.drinkOrders = new List<IDrink>();
             this.TableNumber = tableNumber;
             this.Capacity = capacity;
             this.PricePerPerson = pricePerPerson;
@@ -36,7 +36,7 @@ namespace Bakery.Models.Tables
             }
             private set
             {
-                if (value <= 0)
+                if (value < 0)
                 {
                     throw new ArgumentException(ExceptionMessages.InvalidTableCapacity);
                 }
@@ -74,16 +74,16 @@ namespace Bakery.Models.Tables
 
         public void Clear()
         {
-            DrinkOrders.Clear();
-            FoodOrders.Clear();
-            this.numberOfPeople = 0; //does it throw exception??????
+            drinkOrders.Clear();
+            foodOrders.Clear();
+            this.numberOfPeople = 0;
             IsReserved = false;
         }
 
         public decimal GetBill()
         {
-            decimal drinksTotalPrice = DrinkOrders.Sum(x => x.Price);
-            decimal foodTotalPrice = FoodOrders.Sum(x => x.Price);
+            decimal drinksTotalPrice = drinkOrders.Sum(x => x.Price);
+            decimal foodTotalPrice = foodOrders.Sum(x => x.Price);
             decimal total = drinksTotalPrice + foodTotalPrice + Price;
             return total;
         }
@@ -100,12 +100,12 @@ namespace Bakery.Models.Tables
 
         public void OrderDrink(IDrink drink)
         {
-            DrinkOrders.Add(drink);
+            drinkOrders.Add(drink);
         }
 
         public void OrderFood(IBakedFood food)
         {
-            FoodOrders.Add(food);
+            foodOrders.Add(food);
         }
 
         public void Reserve(int numberOfPeople)

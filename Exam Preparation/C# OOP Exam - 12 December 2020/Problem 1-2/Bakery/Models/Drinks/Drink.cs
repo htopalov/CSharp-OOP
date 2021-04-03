@@ -28,7 +28,7 @@ namespace Bakery.Models.Drinks
             }
             private set
             {
-                if (string.IsNullOrEmpty(value))
+                if (string.IsNullOrWhiteSpace(value))
                 {
                     throw new ArgumentException(ExceptionMessages.InvalidName);
                 }
@@ -76,7 +76,7 @@ namespace Bakery.Models.Drinks
             }
             private set
             {
-                if (string.IsNullOrEmpty(value))
+                if (string.IsNullOrWhiteSpace(value))
                 {
                     throw new ArgumentException(ExceptionMessages.InvalidBrand);
                 }
