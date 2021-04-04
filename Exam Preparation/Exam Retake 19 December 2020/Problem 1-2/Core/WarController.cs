@@ -12,12 +12,12 @@ namespace WarCroft.Core
     public class WarController
     {
         private List<Character> party;
-        private List<Item> pool;
+        private List<Item> itemPool;
 
         public WarController()
         {
             this.party = new List<Character>();
-            this.pool = new List<Item>();
+            this.itemPool = new List<Item>();
         }
 
         public string JoinParty(string[] args)
@@ -60,7 +60,7 @@ namespace WarCroft.Core
                     item = new FirePotion();
                     break;
             }
-            pool.Add(item);
+            itemPool.Add(item);
 
             return string.Format(SuccessMessages.AddItemToPool, itemName);
         }
@@ -72,15 +72,15 @@ namespace WarCroft.Core
             {
                 throw new ArgumentException(string.Format(ExceptionMessages.CharacterNotInParty, characterName));
             }
-            if (pool.Count == 0)
+            if (itemPool.Count == 0)
             {
                 throw new InvalidOperationException(ExceptionMessages.ItemPoolEmpty);
             }
             var character = party.FirstOrDefault(x => x.Name == characterName);
-            var item = pool[pool.Count-1];
+            var item = itemPool[itemPool.Count-1];
       
             character.Bag.AddItem(item);
-            pool.RemoveAt(pool.Count-1);
+            itemPool.RemoveAt(itemPool.Count-1);
 
             return string.Format(SuccessMessages.PickUpItem, characterName, item.GetType().Name);
         }
@@ -98,18 +98,19 @@ namespace WarCroft.Core
             var item = character.Bag.GetItem(itemName);
             character.UseItem(item);
 
-            return string.Format(SuccessMessages.UsedItem, characterName, itemName);
+            return string.Format(SuccessMessages.UsedItem, characterName, item.GetType().Name);
         }
 
         public string GetStats()
         {
             StringBuilderWriter stringBuilderWriter = new StringBuilderWriter();
-            foreach (var character in party.OrderByDescending(x => x.IsAlive).ThenByDescending(x => x.Health))
+            var ordered = this.party.OrderByDescending(c => c.IsAlive).ThenByDescending(c => c.Health);
+            foreach (var character in ordered)
             {
                 stringBuilderWriter.WriteLine(character.ToString());
             }
 
-            return stringBuilderWriter.sb.ToString().Trim();
+            return stringBuilderWriter.sb.ToString().TrimEnd();
         }
 
         public string Attack(string[] args)
@@ -141,7 +142,7 @@ namespace WarCroft.Core
             {
                 stringBuilderWriter.WriteLine($"{receiver.Name} is dead!");
             }
-            return stringBuilderWriter.sb.ToString().Trim();
+            return stringBuilderWriter.sb.ToString().TrimEnd();
         }
 
         public string Heal(string[] args)
@@ -167,11 +168,9 @@ namespace WarCroft.Core
 
             Priest priest = (Priest)healer;
 
-            priest.Heal(receiver);
-            StringBuilderWriter stringBuilderWriter = new StringBuilderWriter();
-            stringBuilderWriter.WriteLine($"{healer.Name} heals {priest.Name} for {priest.AbilityPoints}! {receiver.Name} has {receiver.Health} health now!");
+            priest.Heal(receiver);    
 
-            return stringBuilderWriter.sb.ToString().Trim();
+            return $"{healer.Name} heals {receiver.Name} for {priest.AbilityPoints}! {receiver.Name} has {receiver.Health} health now!";
         }
     }
 }

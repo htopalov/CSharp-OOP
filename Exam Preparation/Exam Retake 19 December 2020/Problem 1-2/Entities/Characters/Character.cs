@@ -96,7 +96,7 @@ namespace WarCroft.Entities.Characters.Contracts
             else
             {
                 hitPoints -= Armor;
-                this.Armor = 0;
+                this.armor = 0;
 
                 if (Health > hitPoints)
                 {
@@ -104,7 +104,7 @@ namespace WarCroft.Entities.Characters.Contracts
                 }
                 else
                 {
-                    Health = 0;
+                    this.health = 0;
                     IsAlive = false;
                 }
             }
