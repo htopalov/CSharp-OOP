@@ -10,17 +10,16 @@ namespace EasterRaces.Models.Cars.Entities
     {
         private string model;
         private int horsePower;
-        private double cubicCentimeters;
         private int minHorsePower;
         private int maxHorsePower;
 
         public Car(string model, int horsePower, double cubicCentimeters, int minHorsePower, int maxHorsePower)
         {
+            this.minHorsePower = minHorsePower;
+            this.maxHorsePower = maxHorsePower;
             this.Model = model;
             this.HorsePower = horsePower;
             this.CubicCentimeters = cubicCentimeters;
-            this.minHorsePower = minHorsePower;
-            this.maxHorsePower = maxHorsePower;
         }
         public string Model
         {
@@ -46,7 +45,7 @@ namespace EasterRaces.Models.Cars.Entities
             }
             private set
             {
-                if (value < minHorsePower && value > maxHorsePower)
+                if (value < minHorsePower || value > maxHorsePower)
                 {
                     throw new ArgumentException(string.Format(ExceptionMessages.InvalidHorsePower, value));
                 }
@@ -54,21 +53,11 @@ namespace EasterRaces.Models.Cars.Entities
             }
         }
 
-        public double CubicCentimeters
-        {
-            get
-            {
-                return this.cubicCentimeters;
-            }
-            private set
-            {
-                this.cubicCentimeters = value;
-            }
-        }
+        public double CubicCentimeters { get; private set; }
 
         public double CalculateRacePoints(int laps)
         {
-            return cubicCentimeters / horsePower * laps;
+            return CubicCentimeters / horsePower * laps;
         }
     }
 }

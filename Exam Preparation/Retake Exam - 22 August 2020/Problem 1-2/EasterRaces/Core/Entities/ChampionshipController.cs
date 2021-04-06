@@ -3,8 +3,10 @@ using EasterRaces.Models.Cars.Contracts;
 using EasterRaces.Models.Cars.Entities;
 using EasterRaces.Models.Drivers.Contracts;
 using EasterRaces.Models.Drivers.Entities;
+using EasterRaces.Models.Races.Contracts;
 using EasterRaces.Models.Races.Entities;
 using EasterRaces.Repositories;
+using EasterRaces.Repositories.Contracts;
 using EasterRaces.Utilities.Messages;
 using System;
 using System.Collections.Generic;
@@ -15,10 +17,16 @@ namespace EasterRaces.Core.Entities
 {
     public class ChampionshipController : IChampionshipController
     {
-        private DriverRepository driverRepo = new DriverRepository();
-        private CarRepository carRepo = new CarRepository();
-        private RaceRepository raceRepo = new RaceRepository();
+        private IRepository<IDriver> driverRepo;
+        private IRepository<ICar> carRepo;
+        private IRepository<IRace> raceRepo;
 
+        public ChampionshipController()
+        {
+            this.driverRepo = new DriverRepository();
+            this.carRepo = new CarRepository();
+            this.raceRepo = new RaceRepository();
+        }
 
         public string AddCarToDriver(string driverName, string carModel)
         {
@@ -100,21 +108,25 @@ namespace EasterRaces.Core.Entities
 
         public string StartRace(string raceName)
         {
-            if (raceRepo.GetByName(raceName) == null)
+            var race = raceRepo.GetByName(raceName);
+            if (race == null)
             {
                 throw new InvalidOperationException(string.Format(ExceptionMessages.RaceNotFound, raceName));
             }
 
-            var race = raceRepo.GetByName(raceName);
-            List<IDriver> driversList = race.Drivers.OrderByDescending(x => x.Car.CalculateRacePoints(race.Laps)).ToList();
-            if (driversList.Count < 3)
+            if (race.Drivers.Count < 3)
             {
                 throw new InvalidOperationException(string.Format(ExceptionMessages.RaceInvalid, raceName, 3));
             }
+
+            List<IDriver> driversList = race.Drivers.OrderByDescending(x => x.Car.CalculateRacePoints(race.Laps)).ToList();
+            raceRepo.Remove(race);
+
             StringBuilder sb = new StringBuilder();
             sb.AppendLine(string.Format(OutputMessages.DriverFirstPosition, driversList[0].Name, raceName));
             sb.AppendLine(string.Format(OutputMessages.DriverSecondPosition, driversList[1].Name, raceName));
             sb.AppendLine(string.Format(OutputMessages.DriverThirdPosition, driversList[2].Name, raceName));
+
 
             return sb.ToString().Trim();
         }

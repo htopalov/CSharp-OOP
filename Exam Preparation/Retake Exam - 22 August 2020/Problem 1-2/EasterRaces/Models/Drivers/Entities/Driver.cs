@@ -33,39 +33,19 @@ namespace EasterRaces.Models.Drivers.Entities
             }
         }
 
-        public ICar Car
-        {
-            get
-            {
-                return this.car;
-            }
-            private set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentNullException(ExceptionMessages.CarInvalid);
-                }
-                this.car = value;
-            }
-        }
+        public ICar Car { get; private set; }
 
-        public int NumberOfWins
-        {
-            get
-            {
-                return this.wins;
-            }
-            private set
-            {
-                this.wins = value;
-            }
-        }
+        public int NumberOfWins { get; private set; }
 
         public bool CanParticipate => this.Car != null;
    
 
         public void AddCar(ICar car)
         {
+            if (car == null)
+            {
+                throw new ArgumentNullException(ExceptionMessages.CarInvalid);
+            }
             this.Car = car;
         }
 
