@@ -120,8 +120,9 @@ namespace EasterRaces.Core.Entities
             }
 
             List<IDriver> driversList = race.Drivers.OrderByDescending(x => x.Car.CalculateRacePoints(race.Laps)).ToList();
+            driversList[0].WinRace();
             raceRepo.Remove(race);
-
+                
             StringBuilder sb = new StringBuilder();
             sb.AppendLine(string.Format(OutputMessages.DriverFirstPosition, driversList[0].Name, raceName));
             sb.AppendLine(string.Format(OutputMessages.DriverSecondPosition, driversList[1].Name, raceName));
